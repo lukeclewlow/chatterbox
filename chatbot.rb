@@ -16,24 +16,40 @@ RESPONSES = { 'sayonara' => 'sayonara',
               'Can you tell me a joke?' => 'Horse walks into a bar, barman says why the long face!',
               'Haha' => 'Lol',
               "What's yours?" => 'Jimbob Letters, pleased to make your acquaintance',
-              "My favourite animal is (.*)" => "Nice, my favourite is also %{c1}"
+              "My favourite animal is a (.*)" => "Nice, my favourite is also %{c1}",
               "You heard" => "I heard, but I didn't understand"
           }
 
-system "clear"
-puts "WELCOME TO CHATBOT 5.0".center(50)
-puts "======================".center(50)
-puts "When you've finished talking just say 'goodbye' to leave!".center(50)
 
-puts "\e[34m++bot++ Hello, what's your name?\e[0m"
-print "...>"
-name = gets.chomp 
-puts "\e[34m++bot++ Hello #{name}\e[0m"
-
-print "...>"
-input = gets.chomp
-while input != ( "goodbye" || "bye" )
-puts "\e[34m++bot++ #{get_response(input)}\e[0m"
-print "...>"
-input = gets.chomp
+def header
+  system "clear"
+  puts "WELCOME TO CHATBOT 5.0".center(50)
+  puts "======================".center(50)
+  puts "When you've finished talking just say 'goodbye' to leave!".center(50)
+  puts ""
 end
+
+
+def intro
+  puts "\e[34m++bot++ Hello, what's your name?\e[0m"
+  print "...>"
+  name = gets.chomp 
+  puts "\e[34m++bot++ Hello #{name}\e[0m"
+end
+
+
+def convo
+  print "...>"
+  input = gets.chomp
+  while input != ( "goodbye" || "bye" ) #bye does not work, not sure why
+  puts "\e[34m++bot++ #{get_response(input)}\e[0m"
+  print "...>"
+  input = gets.chomp
+  end
+end
+
+header
+intro
+convo
+puts "\e[34m++bot++Bye for now!\e[0m"
+puts ""
