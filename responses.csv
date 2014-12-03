@@ -1,0 +1,17 @@
+sayonara,sayonara
+the weather is (.*),I hate it when it's %{c1}
+I love (.*),I love %{c1} too
+I groove to (.*) and (.*),I love %{c1} but I hate %{c2}
+How are you?,"I'm very well, how are you?"
+I'm well,Well that's nice
+My favourite film is (.*),"No way, %{c1} is a rubbish movie"
+It was nice speaking to you,And the same to you
+Can you tell me a joke?,"Horse walks into a bar, barman says why the long face!"
+Haha,Lol
+What's yours?,"Jimbob Letters, pleased to make your acquaintance"
+My favourite animal is a (.*),"Nice, my favourite is also %{c1}"
+You heard,"I heard, but I didn't understand"
+What day is it?,Your lucky day
+Hi,Well Helllllloooo
+ANd yours,Well thats nice
+and yours,That's great

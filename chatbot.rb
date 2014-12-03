@@ -1,4 +1,4 @@
-
+require 'CSV'
 
 
 def get_response(input)
@@ -52,8 +52,8 @@ def convo
       puts "Please enter what the bot should reply to this phrase in future?".center(50)
       puts ""
       print "...>"
-      new_response = gets.chomp    
-      @RESPONSES["#{input}"] = "#{new_response}"
+      new_response = gets.chomp   
+      add_response(input, new_response) 
       puts "\e[34m++bot++ Added...\e[0m"
       print "...>"
       input = gets.chomp
@@ -65,9 +65,35 @@ def convo
   end
 end
 
+def add_response(input, new_response)
+  @RESPONSES["#{input}"] = "#{new_response}"
+end
 
+
+def save_responses(filename = 'responses.csv')
+  # open the file for writing
+  CSV.open(filename, "w") do |file|
+  # iterate over the array of responses
+    @RESPONSES.each do |k, v|
+      response_data = ["#{k}", "#{v}"]
+      file << response_data
+    end
+  end
+  puts "Responses saved........." 
+end
+
+
+def load_responses(filename = 'responses.csv')
+  CSV.foreach(filename, "r") do |row|
+      add_response(row[0], row[1])
+  end
+end
+
+
+load_responses
 header
 intro
 convo
 puts "\e[34m++bot++Bye for now!\e[0m"
 puts ""
+save_responses
