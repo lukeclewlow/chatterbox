@@ -1,4 +1,5 @@
 require 'CSV'
+@RESPONSES = {}
 
 
 def get_response(input)
@@ -7,22 +8,6 @@ def get_response(input)
   response = @RESPONSES[key]
   response.nil? ? 'sorry?' : response % { c1: $1, c2: $2, c3: $3}
 end
-
-@RESPONSES = { 'sayonara' => 'sayonara', 
-              'the weather is (.*)' => 'I hate it when it\'s %{c1}', 
-              'I love (.*)' => 'I love %{c1} too', 
-              'I groove to (.*) and (.*)' => 'I love %{c1} but I hate %{c2}',
-              'How are you?' => "I'm very well, how are you?",
-              'I\'m well' => 'Well that\'s nice',
-              'My favourite film is (.*)' => 'No way, %{c1} is a rubbish movie',
-              'It was nice speaking to you' => 'And the same to you',
-              'Can you tell me a joke?' => 'Horse walks into a bar, barman says why the long face!',
-              'Haha' => 'Lol',
-              "What's yours?" => 'Jimbob Letters, pleased to make your acquaintance',
-              "My favourite animal is a (.*)" => "Nice, my favourite is also %{c1}",
-              "You heard" => "I heard, but I didn't understand",
-              "What day is it?" => "Your lucky day"
-          }
 
 
 def header
@@ -49,7 +34,7 @@ def convo
     if "#{get_response(input)}" == "sorry?"
       puts "\e[34m++bot++ That's not in my repotoire, would you like to add a response?\e[0m"
       puts ""
-      puts "Please enter what the bot should reply to this phrase in future?".center(50)
+      puts "----Please enter what \e[34m++bot++\e[0m should reply to this phrase in future?----".center(50)
       puts ""
       print "...>"
       new_response = gets.chomp   
@@ -71,9 +56,7 @@ end
 
 
 def save_responses(filename = 'responses.csv')
-  # open the file for writing
   CSV.open(filename, "w") do |file|
-  # iterate over the array of responses
     @RESPONSES.each do |k, v|
       response_data = ["#{k}", "#{v}"]
       file << response_data
