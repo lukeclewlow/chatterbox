@@ -1,4 +1,4 @@
-require 'CSV'
+require "CSV"
 @RESPONSES = {}
 
 
@@ -30,7 +30,7 @@ end
 def convo
   print "...>"
   input = gets.chomp
-  while input != ( "goodbye" || "bye" ) #bye does not work, not sure why
+  while input !=  ( "goodbye" )
     if "#{get_response(input)}" == "sorry?"
       puts "\e[34m++bot++ That's not in my repotoire, would you like to add a response?\e[0m"
       puts ""
