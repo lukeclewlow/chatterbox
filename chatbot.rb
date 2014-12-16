@@ -1,6 +1,12 @@
 require "CSV"
 @RESPONSES = {}
 
+class String
+  def blue
+    "\e[34m#{self}\e[0m"
+  end
+end
+
 
 def get_response(input)
   key = @RESPONSES.keys.select {|k| /#{k}/ =~ input }.sample
@@ -20,10 +26,10 @@ end
 
 
 def intro
-  puts "\e[34m++bot++ Hello, what's your name?\e[0m"
+  puts "++bot++ Hello, what's your name?".blue
   print "...>"
   name = gets.chomp 
-  puts "\e[34m++bot++ Hello #{name}\e[0m"
+  puts "++bot++ Hello #{name}".blue
 end
 
 
@@ -32,8 +38,7 @@ def convo
   input = gets.chomp
   while input !=  ( "goodbye" )
     if "#{get_response(input)}" == "sorry?"
-      puts "\e[34m++bot++ That's not in my repotoire, would you like to add a response?\e[0m"
-      puts ""
+      puts "\e[34m++bot++ That's not in my repotoire, would you like to add a response?\e[0m\n"
       puts "----Please enter what \e[34m++bot++\e[0m should reply to this phrase in future?----".center(50)
       puts ""
       print "...>"
@@ -57,10 +62,7 @@ end
 
 def save_responses(filename = 'responses.csv')
   CSV.open(filename, "w") do |file|
-    @RESPONSES.each do |k, v|
-      response_data = ["#{k}", "#{v}"]
-      file << response_data
-    end
+    @RESPONSES.each {|k, v| file << ["#{k}", "#{v}"]}
   end
   puts "Responses saved........." 
 end
