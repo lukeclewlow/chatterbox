@@ -7,7 +7,7 @@ Maker's Academy Pre-Course Challenge
 
 Screenshot
 ---------
-![Chatbot](/chatterbox-challenge.png?raw=true "Chatbot")
+![Chatbot](/chatbot-screenshot.png?raw=true "Chatbot")
 
 Task Specifications:
 -------------------
